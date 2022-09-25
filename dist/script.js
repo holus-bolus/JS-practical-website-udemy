@@ -14044,8 +14044,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.addEventListener('DOMContentLoaded', () => {
+  "use strict";
+
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
-  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.glazing_slider', '.glazing_block', 'glazing_content', 'active');
+  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.glazing_slider ', '.glazing_block', '.glazing_content', 'active');
+  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.decoration_slider', '.no_click', '.decoration_content > div > div', 'after_click');
 });
 
 /***/ }),
@@ -14111,31 +14114,31 @@ const modals = () => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
-  const header = document.querySelector(headerSelector);
-  const tab = document.querySelector(tabSelecor);
-  const content = document.querySelectorAll(contentSelector);
+  const header = document.querySelector(headerSelector),
+        tab = document.querySelectorAll(tabSelector),
+        content = document.querySelectorAll(contentSelector);
 
-  const hideTabContent = () => {
+  function hideTabContent() {
     content.forEach(item => {
       item.style.display = 'none';
     });
     tab.forEach(item => {
       item.classList.remove(activeClass);
     });
-  };
+  }
 
-  const showTabContent = function () {
+  function showTabContent() {
     let i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
     content[i].style.display = 'block';
     tab[i].classList.add(activeClass);
-  };
+  }
 
   hideTabContent();
   showTabContent();
   header.addEventListener('click', e => {
     const target = e.target;
 
-    if (target.classList.contains(tabSelector.replace(/\./, "")) || target.parentNode.classList.contains(tabSelector.replace(/\./, ""))) {
+    if (target && (target.classList.contains(tabSelector.replace(/\./, "")) || target.parentNode.classList.contains(tabSelector.replace(/\./, "")))) {
       tab.forEach((item, i) => {
         if (target === item || target.parentNode === item) {
           hideTabContent();
