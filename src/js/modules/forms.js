@@ -1,7 +1,13 @@
 const forms = () => {
     const forms = document.querySelectorAll('form');
     const inputs = document.querySelectorAll('input');
+    const phoneInputs = document.querySelectorAll('input[name="user_phone"]');
 
+    phoneInputs.forEach(item => {
+        item.addEventListener('input', () => {
+            item.value = item.value.replace(/\D/, '');
+        });
+    });
     const message = {
         loading: 'Loading',
         success: 'Дякуємо. Ми скоро вам передзвонимо',
